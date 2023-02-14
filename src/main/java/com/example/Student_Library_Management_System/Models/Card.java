@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="card")
@@ -29,15 +31,23 @@ public class Card {
     @Enumerated(value = EnumType.STRING)
     private CardStatus cardStatus;  //SET this attribute by ourself
 
+
+    //Card is the child wrt Student ,so the mapping for that is below(unidirectional)
     @OneToOne
     @JoinColumn
     private Student studentVariableName;  //This variable is used in the parent class,
     // while doing the bidirectional mapping
 
 
+    //Now, Card is the parent wrt Book.So the mapping for that is below(Bidirectional - [ in Card->Book perspective] )
+    @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
+    private List<Book> booksIssued;
+
+
 
     //Constructor
     public Card() {
+        booksIssued = new ArrayList<>();
     }
 
 

@@ -24,7 +24,7 @@ public class Student {
     private Card card;
 
     /*
-        Steps to find that variable
+        Steps to find that variable for bidirectional mapping
         1. Go the child class (In this case)
         2. Out of all the attributes select the foreign key attribute that is helping you connect
         with parent class

@@ -23,15 +23,16 @@ public class StudentService {
         card.setStudentVariableName(student); //Foreign key attribute
         // Filling the value with the unidirectional part.
 
-        //Lets go the student and set the card
+        //Let's go the student and set the card
         student.setCard(card);
 
         //If there was a unidirectional mapping : we had to save both of them
         //studentRepo.save () and cardRepo.save()
 
-        //But we are super advance and are using bidirectional : Child will automatically be saved.When we saved the student.
-        studentRepository.save(student);
+        //But we are super advance and are using bidirectional : Child will automatically be saved ,when we saved the student.
 
+        studentRepository.save(student);
+        //By cascading effect, child will automatically be saved (cardRepo will be saved)
         return "Student and Card added";
 
     }
