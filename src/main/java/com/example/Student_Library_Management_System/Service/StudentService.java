@@ -37,7 +37,16 @@ public class StudentService {
 
     }
 
-//    public String getNameByEmail(String email) {
-//
-//    }
+    public String findNameByEmail(String email) {
+        Student student = studentRepository.findByEmail(email);
+        return student.getName();
+
+    }
+    public String updateMobNo(Student newstudent){
+        int id = (newstudent.getId());
+        Student originalStudent = studentRepository.findById(id).get();
+        originalStudent.setMobileNumber(newstudent.getMobileNumber());
+        studentRepository.save(originalStudent);
+        return "Done successfully";
+    }
 }

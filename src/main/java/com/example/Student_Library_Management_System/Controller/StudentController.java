@@ -17,8 +17,13 @@ public class StudentController {
         return studentService.createStudent(student);
     }
 
-//    @GetMapping("/get_user")
-//    public String getNameByEmail(@RequestParam("email") String email ){
-//        return studentService.getNameByEmail(email);
-//    }
+    @GetMapping("/get_user")
+    public String getNameByEmail(@RequestParam("email") String email ){
+        return studentService.findNameByEmail(email);
+    }
+
+    @PutMapping("/update_mob")
+    public String updateMob(@RequestBody Student student){
+        return studentService.updateMobNo(student);
+    }
 }
