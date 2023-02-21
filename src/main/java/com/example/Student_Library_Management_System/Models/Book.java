@@ -3,6 +3,9 @@ package com.example.Student_Library_Management_System.Models;
 import com.example.Student_Library_Management_System.ENUMS.Genre;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="book")
 public class Book {
@@ -29,6 +32,12 @@ public class Book {
     @ManyToOne
     @JoinColumn
     private Card card;
+    // Book transaction mapping
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    private List<Transactions> listOfTransactions = new ArrayList<>();
+
+
+
 
     public Book() {
     }
@@ -87,5 +96,13 @@ public class Book {
 
     public void setIssued(boolean issued) {
         this.issued = issued;
+    }
+
+    public List<Transactions> getListOfTransactions() {
+        return listOfTransactions;
+    }
+
+    public void setListOfTransactions(List<Transactions> listOfTransactions) {
+        this.listOfTransactions = listOfTransactions;
     }
 }

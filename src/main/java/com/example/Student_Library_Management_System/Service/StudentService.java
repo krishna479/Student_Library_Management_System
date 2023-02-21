@@ -1,5 +1,6 @@
 package com.example.Student_Library_Management_System.Service;
 
+import com.example.Student_Library_Management_System.DTOs.StudentUpdateMobRequestDto;
 import com.example.Student_Library_Management_System.ENUMS.CardStatus;
 import com.example.Student_Library_Management_System.Models.Card;
 import com.example.Student_Library_Management_System.Models.Student;
@@ -42,11 +43,20 @@ public class StudentService {
         return student.getName();
 
     }
-    public String updateMobNo(Student newstudent){
-        int id = (newstudent.getId());
-        Student originalStudent = studentRepository.findById(id).get();
-        originalStudent.setMobileNumber(newstudent.getMobileNumber());
-        studentRepository.save(originalStudent);
+    public String updateMobNo(StudentUpdateMobRequestDto studentReq){
+
+        int id = studentReq.getId();
+        Student newStudent = studentRepository.findById(id).get();
+        newStudent.setMobileNumber(studentReq.getMobNo());
+        studentRepository.save(newStudent);
         return "Done successfully";
+//Ligh
+
+//        //Convert the Dto to entity to fetch original data
+//        int id = (studentUpdateMobRequestDto.getId());
+//       // Student originalStudent = studentRepository.findById(id).get();
+//        //originalStudent.setMobileNumber(newstudent.getMobileNumber());
+//        studentRepository.save(originalStudent);
+//        return "Done successfully";
     }
 }
